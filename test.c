@@ -53,10 +53,13 @@ int main(void)
 	printf("type int has %d bits\n\n", PRINT_BITS(-55));
 	printf("type long has %d bits\n\n", PRINT_BITS(-10000L));
 	printf("type long long has %d bits\n\n", PRINT_BITS(-50000LL));
+	printf("type unsigned long long has %d bits\n\n", PRINT_BITS(-1ULL));
 
-	printf("byte %d is %s in bits\n\n", 1, pb_bits_map[1]);
-	printf("byte %d is %s in bits\n\n", 100, pb_bits_map[100]);
-	printf("byte %d is %s in bits\n\n", 255, pb_bits_map[255]);
+	printf("---\n\n");
+
+	printf("value %d is %s in bits\n\n", 1, pb_bits_map[1]);
+	printf("value %d is %s in bits\n\n", 100, pb_bits_map[100]);
+	printf("value %d is %s in bits\n\n", 255, pb_bits_map[255]);
 
 	pb_unpopulate_bits_map();
 

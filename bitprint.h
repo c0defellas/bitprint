@@ -73,21 +73,20 @@ int pb_populate_bits_map()
 	if (pb_bits_map[0])
 		return PB_BITSALLOCATED;
 
-	int bits_length = sizeof(char) * 8;
-	char bitwise = 1 << (bits_length - 1);
+	unsigned char msb_mask = 1 << (CHAR_BIT - 1);
 	unsigned char *bits;
-	unsigned char byte;
+	unsigned char uc;
 
 	for (int i = 0; i <= UCHAR_MAX; i++) {
-		byte = (unsigned char) i;
-		bits = calloc(1, bits_length + 1);
+		uc = (unsigned char) i;
+		bits = calloc(1, CHAR_BIT + 1);
 
 		if (!bits)
 			goto err;
 
-		for (int k = 0; k < bits_length; k++) {
-			bits[k] = byte & bitwise ? '1' : '0';
-			byte <<= 1;
+		for (int k = 0; k < CHAR_BIT; k++) {
+			bits[k] = uc & msb_mask ? '1' : '0';
+			uc <<= 1;
 		}
 		pb_bits_map[i] = bits;
 	}
